@@ -1,0 +1,87 @@
+<ion-card>
+    <ion-card-content>
+        <form [ngFormModel]="createAccountForm">
+            <ion-list>
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="!givenNameControl.valid && givenNameControl.touched">
+                    <ion-label floating>First Name</ion-label>
+                    <ion-icon primary name="person" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="string" [(ngModel)]="user.profile.name.given"
+                               [ngFormControl]="givenNameControl"></ion-input>
+                </ion-item>
+
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="!familyNameControl.valid && familyNameControl.touched">
+                    <ion-label floating>Last Name</ion-label>
+                    <ion-icon primary name="person" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="string" [(ngModel)]="user.profile.name.family"
+                               [ngFormControl]="familyNameControl"></ion-input>
+                </ion-item>
+
+                <!--email-->
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="!emailControl.valid && emailControl.touched">
+                    <ion-label floating>Email</ion-label>
+                    <ion-icon primary name="mail" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="email" [(ngModel)]="user.email" [ngFormControl]="emailControl"></ion-input>
+                </ion-item>
+                <div *ngIf="(emailControl.hasError('required') || emailControl.hasError('invalidEmail')) && emailControl.touched"
+                     class="icon-error-box">Please enter a valid email address.
+                </div>
+                <div *ngIf="emailControl.hasError('registered')"
+                     class="icon-error-box">This email address is already registered.
+                </div>
+
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="(!confirmEmailControl.valid ||
+                          createAccountForm.getError('mismatchedFields') === 'mismatchedEmails') && confirmEmailControl.touched">
+                    <ion-label floating>Confirm Email</ion-label>
+                    <ion-icon primary name="checkmark-circle-outline" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="email" [ngFormControl]="confirmEmailControl"></ion-input>
+                </ion-item>
+                <div *ngIf="(confirmEmailControl.hasError('required')
+                    || confirmEmailControl.hasError('invalidEmail')
+                    || createAccountForm.getError('mismatchedFields') === 'mismatchedEmails')
+                    && confirmEmailControl.touched"
+                     class="icon-error-box">Email addresses do not match.
+                </div>
+                <!---->
+
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="!passwordControl.valid && passwordControl.touched">
+                    <ion-label floating>Password</ion-label>
+                    <ion-icon primary name="lock" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="password" [(ngModel)]="user.password"
+                               [ngFormControl]="passwordControl"></ion-input>
+                </ion-item>
+                <div *ngIf="passwordControl.hasError('required') && passwordControl.touched"
+                     class="icon-error-box">Please enter your password.
+                </div>
+
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="(!confirmPasswordControl.valid ||
+                          createAccountForm.getError('mismatchedFields') === 'mismatchedPasswords') && confirmPasswordControl.touched">
+                    <ion-label floating>Confirm Password</ion-label>
+                    <ion-icon primary name="checkmark-circle-outline" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="password" [ngFormControl]="confirmPasswordControl"></ion-input>
+                </ion-item>
+                <div *ngIf="(confirmPasswordControl.hasError('required')
+                    || createAccountForm.getError('mismatchedFields') === 'mismatchedPasswords')
+                    && confirmPasswordControl.touched"
+                     class="icon-error-box">Passwords do not match.
+                </div>
+
+                <div padding></div>
+            </ion-list>
+
+            <button [disabled]="!createAccountForm.valid" block
+            (click)="createAccount(createAccountForm.value)">Create Account
+                <ion-icon name="create"></ion-icon>
+            </button>
+        </form>
+
+        <button clear block (click)="showSignInCard()">Sign In
+            <ion-icon name="log-in"></ion-icon>
+        </button>
+    </ion-card-content>
+</ion-card>

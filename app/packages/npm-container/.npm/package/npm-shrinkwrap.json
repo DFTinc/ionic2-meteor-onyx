@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "onyx-node": {
+      "version": "4.0.0"
+    }
+  }
+}

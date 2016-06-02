@@ -1,0 +1,34 @@
+{
+  "name": "Ionic2-Meteor-Onyx",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm-run-all build:* --parallel watch:* meteor",
+    "meteor": "meteor run android-device --settings settings.json",
+    "build:ios-css": "node-sass --include-path node_modules/ionic-angular --include-path node_modules/ionicons/dist/scss client/theme/app.ios.scss | postcss --local-plugins --use autoprefixer --output public/stylesheets/ios-bundle.css",
+    "build:md-css": "node-sass --include-path node_modules/ionic-angular --include-path node_modules/ionicons/dist/scss client/theme/app.md.scss | postcss --local-plugins --use autoprefixer --output public/stylesheets/md-bundle.css",
+    "build:fonts": "copyfiles -f 'node_modules/ionic-angular/fonts/*.+(ttf||woff||woff2)' public/fonts/",
+    "watch:css": "nodemon -w client -e scss -x npm run build:ios-css build:md-css"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-beta.15",
+    "angular2-meteor": "0.5.3",
+    "angular2-meteor-auto-bootstrap": "0.5.2",
+    "es6-promise": "3.0.2",
+    "es6-shim": "0.35.0",
+    "ionic-angular": "2.0.0-beta.4",
+    "ionicons": "3.0.0-alpha.3",
+    "meteor-node-stubs": "0.2.3",
+    "ng2-translate": "1.8.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.12"
+  },
+  "devDependencies": {
+    "autoprefixer": "6.3.5",
+    "copyfiles": "0.2.1",
+    "nodemon": "1.9.1",
+    "node-sass": "3.4.2",
+    "npm-run-all": "1.7.0",
+    "postcss-cli": "2.5.1"
+  }
+}

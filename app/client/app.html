@@ -1,0 +1,24 @@
+<ion-menu id="leftMenu" [content]="content">
+
+    <ion-toolbar primary>
+        <ion-title>{{appName}}</ion-title>
+    </ion-toolbar>
+
+    <ion-content>
+        <ion-list>
+            <div *ngFor="#page of pages">
+                <button ion-item class="menu-item" *ngIf="page.show" (click)="openPage(page)">
+                    <ion-icon name="{{page.icon}}" item-left primary></ion-icon>
+                    {{page.title | translate}}
+                </button>
+            </div>
+            <button ion-item class="menu-item" *ngIf="user" (click)="logout()">
+                <ion-icon name="ios-log-out" item-left primary></ion-icon>
+                {{"menu.signOut" | translate}}
+            </button>
+        </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>

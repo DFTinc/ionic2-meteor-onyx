@@ -1,0 +1,57 @@
+<ion-card>
+    <ion-card-content>
+        <form [ngFormModel]="loginForm">
+            <ion-list>
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="(!emailControl.valid && emailControl.touched) ||
+                          emailControl.hasError('notRegistered')">
+                    <ion-label floating>Email</ion-label>
+                    <ion-icon name="mail" item-left class="placeholder-icon" primary></ion-icon>
+                    <ion-input type="email" [(ngModel)]="email" ngControl="emailControl"></ion-input>
+                </ion-item>
+                <div *ngIf="(emailControl.hasError('required') ||
+                    emailControl.hasError('invalidEmail')) && emailControl.touched"
+                     class="icon-error-box">Please enter a valid email address.
+                </div>
+                <div *ngIf="emailControl.hasError('notRegistered')"
+                     class="icon-error-box">This email address is not registered.
+                </div>
+
+                <ion-item class="item-floating-label input-has-icon"
+                          [class.error]="(!passwordControl.valid && passwordControl.touched)
+                          || passwordControl.hasError('incorrectPassword')">
+                    <ion-label floating>Password</ion-label>
+                    <ion-icon primary name="key" item-left class="placeholder-icon"></ion-icon>
+                    <ion-input type="password" [ngFormControl]="passwordControl"></ion-input>
+                </ion-item>
+                <div *ngIf="passwordControl.hasError('required') && passwordControl.touched"
+                     class="icon-error-box">Please enter your password.
+                </div>
+                <div *ngIf="passwordControl.hasError('incorrectPassword')"
+                     class="icon-error-box">Incorrect Password!
+                </div>
+                <div padding></div>
+            </ion-list>
+
+            <ion-row>
+                <button [disabled]="!loginForm.valid" block (click)="onSubmit(loginForm.value)">Sign In
+                    <ion-icon name="log-in"></ion-icon>
+                </button>
+                <button showWhen="ios,android" [disabled]="!emailControl.valid"
+                        class="fingerprint-login" type="button" clear
+                        (click)="signInWithOnyx(loginForm.value)">
+                    <ion-icon name="finger-print"></ion-icon>
+                </button>
+            </ion-row>
+
+            <button clear block (click)="showForgotPasswordCard()">Forgot Password
+                <ion-icon name="help"></ion-icon>
+            </button>
+
+            <button clear block (click)="showCreateAccountCard()">Create Account
+                <ion-icon name="create"></ion-icon>
+            </button>
+
+        </form>
+    </ion-card-content>
+</ion-card>

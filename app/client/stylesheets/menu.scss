@@ -1,0 +1,30 @@
+ion-menu ion-content {
+  background-color: white;
+}
+
+// Remove bottom border of off-canvas menu item list
+ion-menu ion-content ion-list > .item:last-child .item-inner {
+  border-bottom: none;
+}
+
+/*change padding of menu list*/
+ion-menu ion-list + ion-list {
+  margin-top: 0;
+}
+
+/*list item for user*/
+ion-menu ion-list.list-user {
+  margin-bottom: 0;
+}
+
+ion-menu ion-list.list-user button[ion-item] {
+  background-color: color($colors, primary);
+  color: white;
+}
+
+ion-menu ion-list.list-user button[ion-item] .user-item-email {
+  color: white;
+  font-size: 1.15rem;
+}
+
+/*End*/

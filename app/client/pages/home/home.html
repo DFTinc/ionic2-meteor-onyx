@@ -1,0 +1,24 @@
+<ion-navbar *navbar primary>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+        {{"home.title" | translate}}
+    </ion-title>
+</ion-navbar>
+
+
+<ion-content>
+    <ion-card>
+        <ion-list>
+            <button ion-item detail-none (click)="onyxCapture()">{{"home.capture" | translate}}</button>
+            <button ion-item detail-none (click)="onyxEnroll()">{{"home.enroll" | translate}}</button>
+            <button ion-item detail-none (click)="onyxVerify()">{{"home.deviceVerify" | translate}}</button>
+            <button ion-item detail-none (click)="onyxGetTemplate()">{{"home.cloudVerify" | translate}}</button>
+        </ion-list>
+    </ion-card>
+
+    <ion-card *ngIf="imageUri">
+        <img src="{{imageUri}}">
+    </ion-card>
+</ion-content>
